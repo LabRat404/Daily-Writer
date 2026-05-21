@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Daily Tracker</title>
+
+    <link rel="manifest" href="./manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="Daily Tracker" content="My Daily Tracker PWA">
+
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230f172a%22/><text x=%2250%22 y=%2250%22 font-size=%2260%22 text-anchor=%22middle%22 dominant-baseline=%22central%22>📝</text></svg>">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .settings-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: 0.2s;
+        }
+
+        .settings-icon:hover {
+            opacity: 1;
+        }
+
+        #settings-panel {
+            display: none;
+            background: #334155;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        #settings-panel input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        #saveSettingsBtn {
+            background: #10b981;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        .rating-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .rating-btn {
+            font-size: 2.2rem;
+            background: transparent;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: 0.2s ease;
+        }
+
+        .rating-btn.selected {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            transform: scale(1.1);
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            height: 100px;
+            padding: 12px;
+            border-radius: 12px;
+            background: #0f172a;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            resize: none;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+        }
+
+        .word-count {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-align: right;
+            margin-top: 6px;
+            margin-bottom: 15px;
+        }
+
+        .word-count.limit-reached {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .file-upload-wrapper {
+            margin-bottom: 20px;
+            text-align: left;
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .file-upload-label {
+            display: block;
+            color: #38bdf8;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        #mediaInput {
+            display: none;
+        }
+
+        #filePreviewText {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-align: center;
+            word-break: break-all;
+        }
+
+        .preview-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #imgPreview,
+        #videoPreview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            display: none;
+            border: 1px solid #334155;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #submitBtn {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        #pushBtn {
+            background: #10b981;
+            color: white;
+            display: none;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        #done-message {
+            padding: 30px 10px;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="settings-icon" id="toggleSettings">⚙️</div>
+
+        <div id="settings-panel">
+            <label style="font-size: 0.9rem; color: #94a3b8;">Local Server URL:</label>
+            <input type="text" id="serverUrlInput" placeholder="https://192.168.x.x:5000">
+            <button id="saveSettingsBtn">Save Server</button>
+        </div>
+
+        <div id="input-section">
+            <h2>How was your day?</h2>
+            <div class="rating-container" id="ratings">
+                <button class="rating-btn" data-val="unhappy">😠</button>
+                <button class="rating-btn" data-val="sad">🙁</button>
+                <button class="rating-btn" data-val="mid">😐</button>
+                <button class="rating-btn" data-val="happy">🙂</button>
+                <button class="rating-btn" data-val="super happy">🤩</button>
+            </div>
+            <textarea id="comment" placeholder="Write your daily log..."></textarea>
+            <div class="word-count" id="wordCount">0 / 33 words</div>
+
+            <div class="file-upload-wrapper">
+                <label for="mediaInput" class="file-upload-label">📸 Attach Photo / Video (Max 1)</label>
+                <input type="file" id="mediaInput" accept="image/*,video/*">
+                <div id="filePreviewText">No file selected</div>
+                <div class="preview-container">
+                    <img id="imgPreview" alt="Image Preview">
+                    <video id="videoPreview" controls></video>
+                </div>
+            </div>
+            <button id="submitBtn" class="action-btn">Save Today's Log</button>
+        </div>
+
+        <div id="done-message" class="hidden">
+            <h3>✅ Logged for today</h3>
+            <p>Your entry is saved. See you tomorrow!</p>
+            <p id="countdownTimer"
+                style="font-family: monospace; font-size: 1.2rem; color: #38bdf8; margin-top: 15px; font-weight: bold;">
+            </p>
+        </div>
+
+        <button id="pushBtn" class="action-btn">Push Offline Log to Server</button>
+        <div id="status">Waiting for server configuration...</div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
