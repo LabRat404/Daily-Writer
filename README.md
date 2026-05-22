@@ -1,4 +1,4 @@
-# Local Offline PWA Diary Tracker (NOT WORKING YET)
+# Local Offline PWA Diary Tracker v1
 
 A minimalist Progressive Web App (PWA) designed for offline daily journaling and mood tracking. 
 
