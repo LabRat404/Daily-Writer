@@ -10,7 +10,6 @@ A minimalist Progressive Web App (PWA) designed for offline daily journaling and
 *   **Midnight Reset:** Automatically unlocks at `00:00:00` with a live, real-time countdown timer.
 *   **33-Word Limit:** A word counter with strict input truncation at exactly 33 words. (The reason is because I loved the game Clair Obscur: Expedition 33 and feels like 33 words are enough to descibe a day)
 *   **Media & Preview:** Attaches 1 photo/video per day with in-app visual playback.
-*   **Keystroke Auto-Save:** Saves text drafts and ratings to `localStorage` on every single keypress and when switching apps.
 *   **Offline Status & Counter:** Displays a clear sync queue counter when disconnected from the server (`📥 X record(s) queued for sync`).
 
 ---
