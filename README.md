@@ -39,12 +39,12 @@ tracker_app/
 ├── manifest.json
 └── sw.js
 ```
-### 2. The Set Up
-Then with python:
+### 2. The Set Up (Make your you have python installed first lol :D)
+
 # Activate your venv and install dependencies
 pip install flask Pillow flask_cors
 
-# Run the local server
+# Run the local server (with in the folder directory)
 python server.py
 
 You should see the output something like:
@@ -61,7 +61,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 #To make it offline pwa
 You will need to make your phone to trust your local server connection first, steps as below:
 
-1. Make sure you phone is connected wifi or network which is same as your server/PC (to save the logs)
+1. Make sure you phone is connected to wifi or network which is same as your server/PC (to save the logs)
 2. Open up safari, paste in the above in the address bar (https://192.168.xx.xx:5000)
 you will then see a unsecure website, proceed and continue to visit
 
@@ -79,7 +79,7 @@ If you see a page says status online, congrats, your phone trust your pc/server 
 <img src="screenshots\image6.png" width="200" height="450" alt="sixth"> <img src="screenshots\image4.png" width="200" height="450" alt="Forth">
 
 After connecting, you will be able to save all the logs with a green push button, which saves the logs to pc.
-Try saving logs every week or two. iOS resets connection trust daily so setting it up every day will be a huge hassle.
+Try saving logs every week or two. iOS resets connection trust daily so setting it up every day will be a huge hassle. (Unles you got your own db/server in somewhere with a valid cert)
 
 # records.csv and the media folder atatched as an example how it will be once pushed to the local pc/server
 
