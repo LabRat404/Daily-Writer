@@ -42,7 +42,7 @@ tracker_app/
 ### 2. The Set Up
 Then with python:
 # Activate your venv and install dependencies
-pip install flask Pillow
+pip install flask Pillow flask_cors
 
 # Run the local server
 python server.py
@@ -65,19 +65,21 @@ You will need to make your phone to trust your local server connection first, st
 2. Open up safari, paste in the above in the address bar (https://192.168.xx.xx:5000)
 you will then see a unsecure website, proceed and continue to visit
 
+<img src="screenshots\image0.png" width="200" height="400" alt="First"> <img src="screenshots\image1.png" width="200" height="400" alt="First"> <img src="screenshots\image2.png" width="200" height="400" alt="Second"> 
 
-<img src="screenshots\image0.png" width="200" height="400" alt="First"> <img src="screenshots\image1.png" width="200" height="400" alt="Second"> <img src="screenshots\image2.png" width="200" height="400" alt="Third"><img src="screenshots\image3.png" width="200" height="400" alt="Forth"> <img src="screenshots\image4.png" width="200" height="400" alt="Fifth">
+If you see a page says status online, congrats, your phone trust your pc/server now! if say page not find, its fine too, you are also connected 
 
-
-If you see a page says status online, congrats, your phone trust your pc/server now! 
-
-if say page not find, its fine too, you are also connected 
+ <img src="screenshots\image5.png" width="200" height="400" alt="Fifth"> <img src="screenshots\image3.png" width="200" height="400" alt="Third">
 
 3. Now go to git page ----> https://labrat404.github.io/Daily-Writer/
 
 4. Select "Add to Home Screen" and make sure the "Open as Web App toggle is off" (if its on, it will ignore the previously trust and will not work). (On iphone, not sure abt others)
+5. Tap the gear button and put in the address you copied eariler https://192.168.xx.xx:5000 (as follow)
 
-After connecting, you will be able to save all the logs wiht a green push button, which saves the logs to pc
+<img src="screenshots\image6.png" width="200" height="450" alt="sixth"> <img src="screenshots\image4.png" width="200" height="450" alt="Forth">
+
+After connecting, you will be able to save all the logs with a green push button, which saves the logs to pc.
+Try saving logs every week or two. iOS resets connection trust daily so setting it up every day will be a huge hassle.
 
 # records.csv and the media folder atatched as an example how it will be once pushed to the local pc/server
 
