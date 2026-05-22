@@ -45,7 +45,9 @@ tracker_app/
 pip install flask Pillow flask_cors
 
 # Run the local server (with in the folder directory)
+```text
 python server.py
+ ```
 
 You should see the output something like:
 ```text
