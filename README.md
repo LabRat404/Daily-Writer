@@ -79,11 +79,10 @@ If you see a page says status online, congrats, your phone trust your pc/server 
 <img src="screenshots\image6.png" width="200" height="450" alt="sixth"> <img src="screenshots\image4.png" width="200" height="450" alt="Forth">
 
 After connecting, you will be able to save all the logs with a green push button, which saves the logs to pc.
+
 Try saving logs every week or two. iOS resets connection trust daily so setting it up every day will be a huge hassle. (Unles you got your own db/server in somewhere with a valid cert)
 
-# records.csv and the media folder atatched as an example how it will be once pushed to the local pc/server
-
-```
+Records.csv and the media folder atatched as an example how it will be once pushed to the local pc/server
 
 ## 🔮 Future
 Will add a simple summarise UI to view these daily log, maybe also a graph to visual my average mood? :D 
